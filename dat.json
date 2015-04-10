@@ -1,0 +1,19 @@
+{
+  "items":
+  [
+    {
+    "name": "Seguridad",
+    "subitems":{
+      "name":"seg 1"
+      }
+    },
+    {
+    "name": "Medio Ambiente",
+    "subitems":
+    {
+      "name":"seg 1"
+    }
+  }
+
+  ]
+}
