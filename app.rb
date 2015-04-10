@@ -1,13 +1,15 @@
 #let Bundler handle all requires
 require 'bundler'
 Bundler.require(:default)
-# register your app at facebook to get those infos
-# your app id
+
+#julian2015
 #APP_ID = 635457879887599
-APP_ID = 1594605847423709
-# your app secret
 #APP_SECRET = 'c41e31decaab2f5226961f65f567e8e9'
+
+#chaca
+APP_ID = 1594605847423709
 APP_SECRET = '6c6594b1ec81d27846636ca322b68844'
+
 class SimpleRubyFacebookExample < Sinatra::Application
 use Rack::Session::Cookie, secret: 'PUT_A_GOOD_SECRET_IN_HERE'
 get '/' do
