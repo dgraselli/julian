@@ -1,26 +1,34 @@
 [
     {
+    "id": "seguridad",
     "name": "Seguridad",
+    "color": "red",
     "subitems":{
       "name":"seg 1"
       }
     },
     {
+    "id": "medioambiente",
     "name": "Medio Ambiente",
+    "color": "blue",
     "subitems":
     {
       "name":"seg 1"
     }
     },
     {
+    "id": "economia",
     "name": "Economia",
+    "color": "yellow",
     "subitems":
     {
       "name":"seg 1"
     }
     },
     {
-    "name": "Medio Ambiente",
+    "id": "tierras",
+    "name": "Tierras",
+    "color": "green",
     "subitems":
     {
       "name":"seg 1"

@@ -1,0 +1,42 @@
+<!--
+  <div class="vid-wrapper"><video class="video-player" preload="auto"><source src="https://s3.amazonaws.com/webapps.esri.com/videos/66052_AGPlatform_PlanningAnalysis_v06.mp4" type="video/mp4"><source src="https://s3.amazonaws.com/webapps.esri.com/videos/66052_AGPlatform_PlanningAnalysis_v06.webm" type="video/webm"></video></div>
+-->
+  <section id="one" class="main special">
+    <div class="container">
+      <span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>
+      <div class="content">
+        <header class="major">
+          <h2>Prioriza</h2>
+        </header>
+        <p> Segun la prioridad que les das, los mas importantes arriba </p>
+
+        <div class="row">
+          <div class="2u">
+            <div class="number">1</div>
+            <div class="number">2</div>
+            <div class="number">3</div>
+            <div class="number">4</div>
+          </div>
+          <div class="10u">
+
+          <ul class="sortable">
+            <% @data.each do |d|%>
+              <li id="<%= d['id']%>" >
+                <%= d['name'] %>
+              </li>
+            <% end%>
+          </ul>
+        </div>
+      </div>
+
+      </div>
+      <a class="button" href="paso2">Continuar</a>
+    </div>
+  </section>
+
+<script language="javascript">
+  $.ready =  function () {
+    $('.sortable').sortable().bind('sortupdate', function() {
+    });
+  };
+</script>

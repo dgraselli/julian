@@ -1,0 +1,83 @@
+<%
+#require 'koala'
+
+#@oauth = Koala::Facebook::OAuth.new('635457879887599', 'c41e31decaab2f5226961f65f567e8e9')
+#p @oauth
+
+#@graph = Koala::Facebook::API.new(@oauth)
+
+#profile = @graph.get_object("me")
+
+
+%>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1594605847423709',
+      xfbml      : true,
+      version    : 'v2.3'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+
+<!-- Header -->
+  <section id="header">
+    <header class="major">
+      <h1>Inicio</h1>
+      <p>Explicar motivacion del proyecto , etc</p>
+    </header>
+    <div class="container">
+      <ul class="actions">
+        <li><a href="#one" class="button special scrolly">Comenzar !!</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="one" class="main special">
+    <div class="container">
+      <span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>
+      <div class="content">
+        <header class="major">
+          <h2>Elegi</h2>
+        </header>
+        <p> Elegir 5 tematicas que cree mas importantes </p>
+
+        <div id="temas" style="grid">
+          <% @data.each do |d|%>
+            <div id="<%= d['id']%>" class="box noselected" style="background-color: <%=d['color']%>" onclick="$(this).toggleClass('noselected')">
+              <%= d['name']%>
+            </div>
+          <% end%>
+        </div>
+
+      </div>
+      <a class="button" onclick="return go_paso1()">Continuar</a>
+    </div>
+  </section>
+
+<script charset="utf-8">
+  function go_paso1(){
+    selected = $('#temas').children('.noselected');
+    params = $.map(selected, function(x){return x.id});
+    console.debug(params);
+    alert(params);
+    window.location = 'paso1?params='+params;
+  }
+</script>

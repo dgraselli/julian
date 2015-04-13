@@ -44,7 +44,14 @@ session['access_token'] = session['oauth'].get_access_token(params[:code])
 redirect '/'
 end
 
-get  '/index' do
-  erb :index
+get  '/inicio' do
+  @data = JSON.parse(File.read 'public/dat.json')
+  erb :inicio
 end
+
+get  '/paso1' do
+  @data = JSON.parse(File.read 'public/dat.json')
+  erb :paso1
+end
+
 end
