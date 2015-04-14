@@ -1,15 +1,15 @@
 [
     {
-    "id": "seguridad",
-    "name": "Seguridad",
+    "id": "salud",
+    "name": "Salud e Inclusion Social",
     "color": "red",
     "subitems":{
       "name":"seg 1"
       }
     },
     {
-    "id": "medioambiente",
-    "name": "Medio Ambiente",
+    "id": "jovenes",
+    "name": "Jovenes y Educacion",
     "color": "blue",
     "subitems":
     {
@@ -17,8 +17,8 @@
     }
     },
     {
-    "id": "economia",
-    "name": "Economia",
+    "id": "derechos",
+    "name": "Derechos Humanos, Genero y Diversidad",
     "color": "yellow",
     "subitems":
     {
@@ -26,12 +26,40 @@
     }
     },
     {
-    "id": "tierras",
-    "name": "Tierras",
+    "id": "ciencia",
+    "name": "Ciencia, Tecnologia y Sistema Productivo",
     "color": "green",
     "subitems":
     {
       "name":"seg 1"
     }
-    }
+  },
+  {
+  "id": "identidad",
+  "name": "Identidad, Cultura y Comunicacion",
+  "color": "green",
+  "subitems":
+  {
+    "name":"seg 1"
+  }
+},
+{
+"id": "seguridad",
+"name": "Seguridad humana y democracia. Democratizacion de la justicia",
+"color": "green",
+"subitems":
+{
+  "name":"seg 1"
+}
+},
+{
+"id": "agroalimentaria",
+"name": "Argentina agroalimentaria: Desarrollo territorial y comercializacion",
+"color": "green",
+"subitems":
+{
+  "name":"seg 1"
+}
+}
+
 ]
