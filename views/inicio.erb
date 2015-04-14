@@ -1,3 +1,4 @@
+<!--
 <%
 #require 'koala'
 
@@ -29,41 +30,50 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 
-
 <div
   class="fb-like"
   data-share="true"
   data-width="450"
   data-show-faces="true">
 </div>
+-->
 
 <!-- Header -->
   <section id="header">
+    <video class="bg" src="videos/v2.mp4" autoplay poster="img/pic02.jpg"></video>
     <header class="major">
       <h1>Inicio</h1>
       <p>Explicar motivacion del proyecto , etc</p>
     </header>
     <div class="container">
       <ul class="actions">
-        <li><a href="#one" class="button special scrolly">Comenzar !!</a></li>
+        <li><a href="#one" class="button special scrolly" onclick="$('#one video')[0].play()">Comenzar !!</a></li>
       </ul>
     </div>
   </section>
 
   <section id="one" class="main special">
     <div class="container">
-      <span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>
+      <!--<span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>-->
+      <video class="bg" src="videos/v1.mp4"  poster="img/pic02.jpg"></video>
       <div class="content">
         <header class="major">
-          <h2>Elegi</h2>
+          <h2>Elegis</h2>
         </header>
         <p> Elegir 5 tematicas que cree mas importantes </p>
 
-        <div id="temas" style="grid">
+        <div id="temas" >
           <% @data.each do |d|%>
-            <div id="<%= d['id']%>" class="box noselected" style="background-color: <%=d['color']%>" onclick="$(this).toggleClass('noselected')">
-              <%= d['name']%>
-            </div>
+            <div class="row" id="<%= d['id']%>">
+              <div class="2u box" style="height:100%; ">
+                <i class="fa fa-search-plus" style="font-size: 14px; float: left; padding: 5px;" onclick="expandir('<%=d['id']%>', '<%=d['desc']%>');  if(event.stopPropagation){event.stopPropagation();} event.cancelBubble=true;"></i>
+              </div>
+              <div class="9u box" onclick="$(this).toggleClass('selected');">
+                  <%= d['name']%>
+                  <p class="text_content"></p>
+              </div>
+
+          </div>
           <% end%>
         </div>
 
@@ -73,11 +83,24 @@
   </section>
 
 <script charset="utf-8">
+  function expandir(id, text)
+  {
+    $('#temas .box').animate({height: '40px'});
+    $('#temas .box').children('.text_content').html('');
+    $('#'+id).children('.box').animate({height: '150px'});
+    $('#'+id+' >> .text_content').html(text);
+
+  }
+
   function go_paso1(){
     selected = $('#temas').children('.noselected');
     params = $.map(selected, function(x){return x.id});
+    if(params.length < 4)
+    {
+        alert('Seleccione al menos 4 caracteristicas')
+        return;
+    }
     console.debug(params);
-    alert(params);
-    window.location = 'paso1?params='+params;
+    window.location = 'paso1?selected='+params;
   }
 </script>

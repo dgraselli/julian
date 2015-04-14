@@ -2,6 +2,7 @@
     {
     "id": "salud",
     "name": "Salud e Inclusion Social",
+    "desc": "Fortalecimiento del sistema publico de salud. <br> Atencion primaria de la salud como estrategia prevalente <br> Tercera Edad, Discapacidad  ",
     "color": "red",
     "subitems":{
       "name":"seg 1"
@@ -10,6 +11,7 @@
     {
     "id": "jovenes",
     "name": "Jovenes y Educacion",
+    "desc": "Profundizacion del programa <i>Progres.Ar</i><br> Defensa de la escuela publica.<br> El rol del docente en el proyecto nacional. ",
     "color": "blue",
     "subitems":
     {
@@ -19,6 +21,7 @@
     {
     "id": "derechos",
     "name": "Derechos Humanos, Genero y Diversidad",
+    "desc": "Derechos humanos en generos y diversidad. ",
     "color": "yellow",
     "subitems":
     {
@@ -28,6 +31,7 @@
     {
     "id": "ciencia",
     "name": "Ciencia, Tecnologia y Sistema Productivo",
+    "desc": "text",
     "color": "green",
     "subitems":
     {
@@ -37,6 +41,7 @@
   {
   "id": "identidad",
   "name": "Identidad, Cultura y Comunicacion",
+  "desc": "text",
   "color": "green",
   "subitems":
   {
@@ -46,6 +51,7 @@
 {
 "id": "seguridad",
 "name": "Seguridad humana y democracia. Democratizacion de la justicia",
+"desc": "text",
 "color": "green",
 "subitems":
 {

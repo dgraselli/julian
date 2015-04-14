@@ -3,9 +3,11 @@
   [
     {
     "name": "Seguridad",
-    "subitems":{
+    "subitems": [
+      {
       "name":"seg 1"
-      }
+    },
+    ]
     },
     {
     "name": "Medio Ambiente",

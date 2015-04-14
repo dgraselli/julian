@@ -1,6 +1,5 @@
 
 .sortable {
-	width: 310px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -47,25 +46,41 @@ li.sortable-placeholder {
 
 
 
+#temas{
+	text-align: middle;
+	}
+
+
+	#temas p{
+		font-size: 10px;
+		}
+
 .box
 {
-	width: 150px;
-	height: 150px;
-	display: block;
-	float: left;
-	background-color: silver;
+	list-style: none;
+	padding: 3px;
+	border-radius: 5px;
+	margin: 2px;
+	font-size: 12px;
+}
+
+#temas .content{
+	border: 2px black solid;
 }
 
 .box:hover
 {
-	background-color: #ffdddd;
+	border-color: #0A9145;
 	cursor: pointer
 }
 
-.noselected
+.selected
 {
-	background-color: silver !important;
+	background-color: #0A9145 !important;
+	color: white;
 }
+
+
 
 .number
 {
@@ -78,4 +93,13 @@ li.sortable-placeholder {
 
 .ddsortable li {
   background-color: green;
+}
+
+video.bg
+{
+	display: block;
+	left: 0px;
+	top: 0px;
+	position: absolute;
+	z-index: -1000;
 }

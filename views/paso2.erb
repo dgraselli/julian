@@ -1,0 +1,32 @@
+<!--
+  <div class="vid-wrapper"><video class="video-player" preload="auto"><source src="https://s3.amazonaws.com/webapps.esri.com/videos/66052_AGPlatform_PlanningAnalysis_v06.mp4" type="video/mp4"><source src="https://s3.amazonaws.com/webapps.esri.com/videos/66052_AGPlatform_PlanningAnalysis_v06.webm" type="video/webm"></video></div>
+-->
+  <section id="one" class="main special">
+    <div class="container">
+      <span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>
+      <div class="content">
+        <header class="major">
+          <h2>Opina</h2>
+        </header>
+        <p> Cual es tu opinion acerca de los temas que crees mas importantes </p>
+
+        <div >
+            <% @data.each do |d|%>
+              <h1><%= d['id'] %></h1>
+              <p>
+                <%= d['id'] %>
+              </p>
+            <% end%>
+        </div>
+
+      </div>
+      <a class="button" href="paso2">Continuar</a>
+    </div>
+  </section>
+
+<script language="javascript">
+  $.ready =  function () {
+    $('.sortable').sortable().bind('sortupdate', function() {
+    });
+  };
+</script>

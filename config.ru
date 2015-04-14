@@ -3,4 +3,4 @@ require "./app"
 run Sinatra::Application
 
 require './app'
-run SimpleRubyFacebookExample
+run SimpleApp
