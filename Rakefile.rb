@@ -1,4 +1,5 @@
 # Rakefile
+require "./app"
 require "sinatra/activerecord/rake"
 
 namespace :db do
