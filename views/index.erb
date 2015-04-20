@@ -1,0 +1,8 @@
+
+
+You are logged in! <a href="/logout">Logout</a>
+
+<%= @profile['name'] %> (<%= @friends.count %>)
+<% @friends.each do |f| %>
+  a <%= f %>
+<% end %>

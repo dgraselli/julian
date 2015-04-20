@@ -10,15 +10,28 @@ Bundler.require(:default)
 APP_ID = 1594605847423709
 APP_SECRET = '6c6594b1ec81d27846636ca322b68844'
 
+
+require "sinatra/activerecord"
+set :database, {adapter: "sqlite3", database: "db/base.sqlite3"}
+
+
 class SimpleApp < Sinatra::Application
 
-use Rack::Session::Cookie, secret: 'PUT_A_GOOD_SECRET_IN_HERE'
+  register Sinatra::ActiveRecordExtension
 
-#@data_aux = JSON.parse(File.read 'public/dat.json')
+  use Rack::Session::Cookie, secret: 'PUT_A_GOOD_SECRET_IN_HERE'
+
+  #@data_aux = JSON.parse(File.read 'public/dat.json')
 
 get '/' do
     if session['access_token']
-    'You are logged in! <a href="/logout">Logout</a>'
+      @graph = Koala::Facebook::API.new(session['access_token'])
+      @profile = @graph.get_object("me")
+      @friends = @graph.get_connections("me", "friends")
+
+      @data = JSON.parse(File.read 'public/dat.json')
+
+      erb :inicio
     # do some stuff with facebook here
     # for example:
   # @graph = Koala::Facebook::GraphAPI.new(session["access_token"])
@@ -28,7 +41,7 @@ get '/' do
   # @graph.put_wall_post("Checkout my new cool app!", {}, "someoneelse's id")
 
   else
-  '<a href="/login">Login</a>'
+    redirect '/login'
   end
 end
 
@@ -36,7 +49,7 @@ get '/login' do
   # generate a new oauth object with your app data and your callback url
   session['oauth'] = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, "#{request.base_url}/callback")
   # redirect to facebook to get your code
-  redirect session['oauth'].url_for_oauth_code()
+  redirect session['oauth'].url_for_oauth_code(:permissions => "user_friends, user_relationships")
 end
 
 get '/logout' do
@@ -49,11 +62,6 @@ get '/callback' do
   #get the access token from facebook with your code
   session['access_token'] = session['oauth'].get_access_token(params[:code])
   redirect '/'
-end
-
-get  '/inicio' do
-  @data = JSON.parse(File.read 'public/dat.json')
-  erb :inicio
 end
 
 get  '/paso1' do
@@ -76,5 +84,33 @@ get  '/paso2' do
   erb :paso2
 end
 
+class Persona < ActiveRecord::Base
+end
+class TemasSeleccionado < ActiveRecord::Base
+end
+
+get  '/paso3' do
+  selected = params['selected'].split(',')
+  @data = JSON.parse(File.read 'public/dat.json').select{|d| selected.include? d['id']}
+
+  Persona.create({
+    login: 'diego',
+    name: 'diego',
+    })
+
+  idx = 1;
+  selected.each do |x|
+    TemasSeleccionado.create(
+      {
+      login: 'diego',
+      tema: x,
+      orden: idx
+      })
+    idx += 1
+  end
+
+  
+  erb :paso3
+end
 
 end

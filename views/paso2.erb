@@ -10,9 +10,9 @@
         </header>
         <p> Cual es tu opinion acerca de los temas que crees mas importantes </p>
 
-        <div >
+        <div id="temas">
             <% @data.each do |d|%>
-              <h1><%= d['id'] %></h1>
+              <h1 id="<%= d['id'] %>"><%= d['id'] %></h1>
               <p>
                 <%= d['id'] %>
               </p>
@@ -20,13 +20,17 @@
         </div>
 
       </div>
-      <a class="button" href="paso2">Continuar</a>
+      <a class="button" onclick="go_paso3()">Continuar</a>
     </div>
   </section>
 
-<script language="javascript">
-  $.ready =  function () {
-    $('.sortable').sortable().bind('sortupdate', function() {
-    });
-  };
-</script>
+  <script language="javascript">
+
+    function go_paso3(){
+      selected = $('#temas > h1');
+      params = $.map(selected, function(x){return x.id});
+      console.debug(params);
+      window.location = 'paso3?selected='+params;
+    }
+
+    </script>

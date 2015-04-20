@@ -68,7 +68,7 @@
               <div class="2u box" style="height:100%; ">
                 <i class="fa fa-search-plus" style="font-size: 14px; float: left; padding: 5px;" onclick="expandir('<%=d['id']%>', '<%=d['desc']%>');  if(event.stopPropagation){event.stopPropagation();} event.cancelBubble=true;"></i>
               </div>
-              <div class="9u box" onclick="$(this).toggleClass('selected');">
+              <div class="9u box" id="<%= d['id']%>" onclick="$(this).toggleClass('selected');">
                   <%= d['name']%>
                   <p class="text_content"></p>
               </div>
@@ -93,7 +93,7 @@
   }
 
   function go_paso1(){
-    selected = $('#temas').children('.noselected');
+    selected = $('#temas >> .selected');
     params = $.map(selected, function(x){return x.id});
     if(params.length < 4)
     {

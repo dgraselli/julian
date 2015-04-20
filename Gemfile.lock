@@ -16,13 +16,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.0)
-    blindgaenger-sinatra-rest (0.3.3)
-      english (>= 0.3.1)
-      sinatra (>= 0.9.0.5)
     bond (0.5.1)
     builder (3.2.2)
-    english (0.6.3)
-      language
+    chartkick (1.2.4)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     i18n (0.7.0)
@@ -31,7 +27,6 @@ GEM
       addressable
       faraday
       multi_json
-    language (0.6.0)
     minitest (5.5.1)
     multi_json (1.11.0)
     multipart-post (2.0.0)
@@ -40,6 +35,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (10.4.2)
     ripl (0.7.1)
       bond (~> 0.5.1)
     ripl-multi_line (0.3.1)
@@ -72,9 +68,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord
-  blindgaenger-sinatra-rest
+  chartkick
   koala (~> 2.0)
+  rake
   shotgun
   sinatra
   sinatra-activerecord
