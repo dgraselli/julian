@@ -49,7 +49,7 @@ get '/login' do
   # generate a new oauth object with your app data and your callback url
   session['oauth'] = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, "#{request.base_url}/callback")
   # redirect to facebook to get your code
-  redirect session['oauth'].url_for_oauth_code(:permissions => "user_friends, user_relationships")
+  redirect session['oauth'].url_for_oauth_code(:permissions => "user_friends, user_relationships, publish_actions")
 end
 
 get '/logout' do
@@ -93,23 +93,27 @@ get  '/paso3' do
   selected = params['selected'].split(',')
   @data = JSON.parse(File.read 'public/dat.json').select{|d| selected.include? d['id']}
 
+  @graph = Koala::Facebook::API.new(session['access_token'])
+  @profile = @graph.get_object("me")
+  @graph.put_wall_post("Test posting from ext app!")
+
   Persona.create({
-    login: 'diego',
-    name: 'diego',
+    login: @profile['id'],
+    name: @profile['name'],
     })
 
   idx = 1;
   selected.each do |x|
     TemasSeleccionado.create(
       {
-      login: 'diego',
+      login: @profile['id'],
       tema: x,
       orden: idx
       })
     idx += 1
   end
 
-  
+
   erb :paso3
 end
 
