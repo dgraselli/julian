@@ -95,11 +95,8 @@ get  '/paso3' do
 
   @graph = Koala::Facebook::API.new(session['access_token'])
   @profile = @graph.get_object("me")
-<<<<<<< HEAD
-  @graph.put_wall_post("Test posting 2 from ext app!")
-=======
+  #@graph.put_wall_post("Test posting 2 from ext app!")
   #@graph.put_wall_post("Test posting from ext app!")
->>>>>>> f0d4e29c0b6c7fb6520f2b23d68f9bea0f61a7f6
 
   Persona.create({
     login: @profile['id'],

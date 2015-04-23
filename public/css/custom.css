@@ -128,3 +128,6 @@ video.bg
 	position: absolute;
 	z-index: -1000;
 }
+
+
+.box{background-color: white}

@@ -1,21 +1,3 @@
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1594605847423709',
-      xfbml      : true,
-      version    : 'v2.3'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/es_AR/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-test
 
 <!--
   <div class="vid-wrapper"><video class="video-player" preload="auto"><source src="https://s3.amazonaws.com/webapps.esri.com/videos/66052_AGPlatform_PlanningAnalysis_v06.mp4" type="video/mp4"><source src="https://s3.amazonaws.com/webapps.esri.com/videos/66052_AGPlatform_PlanningAnalysis_v06.webm" type="video/webm"></video></div>
@@ -34,43 +16,66 @@ test
 
       <div class="content">
         <header class="major">
-          <h2>Gracias <%= @profile['name'] %> por Participar.</h2>
+          <h2> <%= @profile['name'] %>, gracias por Participar.</h2>
         </header>
-        <p>Tu opinion y tu voto son esenciales para tener la provincia que nos merecemos los bonaereneses.</p>
-        <p>Compara tu resultado!!!</p>
+        <p>Tu opinion y tu voto son esenciales para tener la provincia que merecemos los bonaereneses.</p>
         <div id="grafico">
           <div class="box">
-            <p>Tu Resultado</p>
-            <%= pie_chart TemasSeleccionado.group(:tema).count, height: "100px"  %>
+            <p>Tu valoración</p>
+            <%= pie_chart TemasSeleccionado.where(login: @profile['id']).group(:tema).sum('11 - orden'), height: "100px"  %>
+            <div>&nbsp;</div>
+              <button onclick="Publicar()">Compartir</button>
           </div>
           <div class="box">
-            <p>La valoracion que le dieron todos los que participaron</p>
+            <p>La valoración de tus amigos <i><%= @friends[0..5].map{|f| f['name']}.join(',') %> <%= @friends.count > 5 ? '...' : '' %></i></p>
+            <%= pie_chart TemasSeleccionado.where(login: @friends.map{|f| f['id']}).group(:tema).sum('11 - orden'), height: "100px"  %>
+          </div>
+          <div class="box">
+            <p>Valoración general</p>
             <%= pie_chart TemasSeleccionado.group(:tema).sum('11 - orden'), height: "100px"  %>
           </div>
         </div>
 
       </div>
 
-        <% @friends.each do |f| %>
-        <div class="">
-        <p>Resultado de <%= f['name'] %></p>
+      <div id="fb-root">
+
       </div>
-        <% end %>
 
         <script charset="utf-8">
-        FB.api('/me', {fields: 'last_name'}, function(response) {
-          console.log(response);
-        });
 
-        function test(){
-        FB.ui({
-          method: 'feed',
-          //link: 'http://local.myapp.com:9292/incio',
-          caption: $('#grafico').text(),
-          }, function(response){});
-        }
-        </script>
-        <button onclick="test()">Compartir</button>
+        window.fbAsyncInit = function() {
+          FB.init({appId: '1594605847423709', status: true, xfbml: true});
+        };
+        (function() {
+          var e = document.createElement('script'); e.async = true;
+          e.src = document.location.protocol +
+            '//connect.facebook.net/en_US/all.js';
+          document.getElementById('fb-root').appendChild(e);
+        }());
+
+      function Publicar(){
+       FB.ui(
+       {
+         method: 'feed',
+         name: 'Ejemplo de publicación con dialogo ',
+         link: 'http://local.myapp.com:9292',
+         caption: 'prueba caption',
+         description: 'Descripción',
+         picture: 'http://t0.gstatic.com/images?q=tbn:ANd9GcQdidD6NPbXAXgLFTTvVvjI0GeQqOwyQ55s5_-6uXLxUmoQqtpWKw',
+         message: 'El texto que quieres publicar'
+       },
+// Si quieres que salga una alerta
+       function(response) {
+             if (response && response.post_id) {
+               alert('He publicado en el muro' );
+             } else {
+               alert('No he publicado' );
+             }
+           }
+         );
+       }
+    </script>
 
       </div>
     </div>
