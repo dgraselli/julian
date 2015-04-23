@@ -3,24 +3,26 @@
 -->
   <section id="one" class="main special">
     <div class="container">
-      <span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>
       <div class="content">
-        <header class="major">
-          <h2>Opina</h2>
-        </header>
-        <p> Cual es tu opinion acerca de los temas que crees mas importantes </p>
+        <p>Los temas que Seleccionaste son</p>
 
         <div id="temas">
             <% @data.each do |d|%>
-              <h1 id="<%= d['id'] %>"><%= d['id'] %></h1>
-              <p>
-                <%= d['id'] %>
-              </p>
+              <h1 id="<%= d['id'] %>" style="color:<%= d['color']%>;"><%= d['name'] %></h1>
             <% end%>
         </div>
-
+        <p><br>
+        <h1>Votaria al Candidato Julian Dominguez?</h1>
+        <a class="button special ">Si</a>
+        <a class="button special ">Tal vez</a>
+        <a class="button special ">No</a>
       </div>
       <a class="button" onclick="go_paso3()">Continuar</a>
+      <p><br>
+      <p>Conozca mas de Julian y el grupo San Martin</p>
+      <a href="www.juliandominguez.com.ar" >Web Oficial de Julian</a><br>
+      <a href="http://juliandominguez.com.ar/movimiento-san-martin/" >Web Oficial Grupo San Martin</a>
+      
     </div>
   </section>
 

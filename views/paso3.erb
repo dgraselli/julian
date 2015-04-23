@@ -22,38 +22,39 @@
 -->
   <section id="one" class="main special">
     <div class="container">
-      <video class="bg" src="videos/v3.mp4" autoplay  poster="img/pic02.jpg"></video>
+      <%
+      @graph = Koala::Facebook::API.new(session['access_token'])
+      @profile = @graph.get_object("me")
+      @friends = @graph.get_connections("me", "friends")
+      p @profile
+      p @friends
+
+      %>
+
 
       <div class="content">
         <header class="major">
-          <h2>Fin</h2>
+          <h2>Gracias <%= @profile['name'] %> por Participar.</h2>
         </header>
-        <p> bla bla bla bla bla bla bla bla bla bla bla bla bla bla </p>
-
+        <p>Tu opinion y tu voto son esenciales para tener la provincia que nos merecemos los bonaereneses.</p>
+        <p>Compara tu resultado!!!</p>
         <div id="grafico">
-          <div class="">
+          <div class="box">
+            <p>Tu Resultado</p>
             <%= pie_chart TemasSeleccionado.group(:tema).count, height: "100px"  %>
           </div>
-          <div class="">
+          <div class="box">
+            <p>La valoracion que le dieron todos los que participaron</p>
             <%= pie_chart TemasSeleccionado.group(:tema).sum('11 - orden'), height: "100px"  %>
           </div>
         </div>
 
-
       </div>
 
-      <div class="">
-        <%
-        @graph = Koala::Facebook::API.new(session['access_token'])
-        @profile = @graph.get_object("me")
-        @friends = @graph.get_connections("me", "friends")
-        p @profile
-        p @friends
-
-        %>
-        <%= @profile['name'] %> (<%= @friends.count %>)
         <% @friends.each do |f| %>
-          a <%= f %>
+        <div class="">
+        <p>Resultado de <%= f['name'] %></p>
+      </div>
         <% end %>
 
         <script charset="utf-8">
@@ -70,7 +71,7 @@
         }
         </script>
         <button onclick="test()">Compartir</button>
-      </div>
+
       </div>
     </div>
   </section>
