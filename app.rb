@@ -3,8 +3,8 @@ require 'bundler'
 Bundler.require(:default)
 
 #julian2015
-#APP_ID = 635457879887599
-#APP_SECRET = 'c41e31decaab2f5226961f65f567e8e9'
+#APP_ID = 379738152228977
+#APP_SECRET = '6753b07f6f96b034a8d9aa0867897e47'
 
 #chaca
 APP_ID = 1594605847423709
@@ -49,7 +49,7 @@ get '/login' do
   # generate a new oauth object with your app data and your callback url
   session['oauth'] = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, "#{request.base_url}/callback")
   # redirect to facebook to get your code
-  redirect session['oauth'].url_for_oauth_code(:permissions => "user_friends, user_relationships, publish_actions")
+  redirect session['oauth'].url_for_oauth_code(:permissions => "user_friends, user_relationships")
 end
 
 get '/logout' do
@@ -95,7 +95,11 @@ get  '/paso3' do
 
   @graph = Koala::Facebook::API.new(session['access_token'])
   @profile = @graph.get_object("me")
+<<<<<<< HEAD
   @graph.put_wall_post("Test posting 2 from ext app!")
+=======
+  #@graph.put_wall_post("Test posting from ext app!")
+>>>>>>> f0d4e29c0b6c7fb6520f2b23d68f9bea0f61a7f6
 
   Persona.create({
     login: @profile['id'],

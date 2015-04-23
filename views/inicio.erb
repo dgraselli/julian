@@ -40,14 +40,9 @@
 
 <!-- Header -->
   <section id="header">
-    <video class="bg" src="videos/v2.mp4" autoplay poster="img/pic02.jpg"></video>
-    <header class="major">
-      <h1>Inicio</h1>
-      <p>Explicar motivacion del proyecto , etc</p>
-    </header>
     <div class="container">
       <ul class="actions">
-        <li><a href="#one" class="button special scrolly" onclick="$('#one video')[0].play()">Comenzar !!</a></li>
+        <li><a href="#one" class="button special scrolly">Comenzar !!</a></li>
       </ul>
     </div>
   </section>
@@ -55,26 +50,18 @@
   <section id="one" class="main special">
     <div class="container">
       <!--<span class="image fit primary"><img src="images/pic01.jpg" alt="" /></span>-->
-      <video class="bg" src="videos/v1.mp4"  poster="img/pic02.jpg"></video>
       <div class="content">
-        <header class="major">
-          <h2>Elegis</h2>
-        </header>
-        <p> Elegir 5 tematicas que cree mas importantes </p>
+        <p>Te proponemos de manera interactiva que nos muestres tus prioridades y que conozcas nuestra plataforma.</p>
+        <p>Selecciona 4 temas que te parezcan los mas importantes!!!</p>
 
         <div id="temas" >
           <% @data.each do |d|%>
-            <div class="row" id="<%= d['id']%>">
-              <div class="2u box" style="height:100%; ">
-                <i class="fa fa-search-plus" style="font-size: 14px; float: left; padding: 5px;" onclick="expandir('<%=d['id']%>', '<%=d['desc']%>');  if(event.stopPropagation){event.stopPropagation();} event.cancelBubble=true;"></i>
-              </div>
-              <div class="9u box" id="<%= d['id']%>" onclick="$(this).toggleClass('selected');">
-                  <%= d['name']%>
-                  <p class="text_content"></p>
-              </div>
-
-          </div>
+            <div class="boxtemas" style="background-color:<%= d['color']%>;" id="<%= d['id']%>" onclick="expandir('<%= d['id']%>','<%= d['desc']%>','<%= d['color']%>');">
+              <%= d['name']%>
+              <i class="fa fa-thumbs-up fa-2x" style="float:right;display:none;"></i>
+            </div>
           <% end%>
+          <div class="bl-content"  onclick="collapse();if(event.stopPropagation){event.stopPropagation();} event.cancelBubble=true;"></div>
         </div>
 
       </div>
@@ -83,17 +70,33 @@
   </section>
 
 <script charset="utf-8">
-  function expandir(id, text)
+  function expandir(id, text,color)
   {
-    $('#temas .box').animate({height: '40px'});
-    $('#temas .box').children('.text_content').html('');
-    $('#'+id).children('.box').animate({height: '150px'});
-    $('#'+id+' >> .text_content').html(text);
-
+    var div = $('#temas');
+    var vwidth = div.width();
+    var vheight = div.height();
+    var vtop = div.position();
+    $('#temas .bl-content').html('');
+    $('#temas .bl-content').css('background-color',color);
+    $('#temas .bl-content').css('top',vtop.top);
+    $('#temas .bl-content').animate({height: vheight + 'px' ,width: vwidth + 'px',opacity:'1'},"slow");
+    $('#temas .bl-content').animate({width: vwidth + 'px',opacity:'1'},"slow");
+    var htmlsel = "<i class=\"fa fa-thumbs-up fa-3x\" style=\"float:left;\" onclick=\"select('"+id+"');\"></i>";
+    var htmlclose = "<i class=\"fa fa-times-circle-o fa-3x\" style=\"float:right;\" onclick=\"collapse();\"></i>";
+    var htmlcontent = htmlsel + htmlclose + "<div class=\"propuestas\">" + text + "</div>";
+    $('#temas .bl-content').html(htmlcontent);
   }
-
+  function collapse()
+  {
+    $('#temas .bl-content').animate({height: '0px' ,width: '0px',opacity:'0'},"slow");
+  }
+  function select(id)
+  {
+    $("#"+id).toggleClass('selected');
+    $("#"+id+" .fa").toggle();
+  }
   function go_paso1(){
-    selected = $('#temas >> .selected');
+    selected = $('#temas .selected');
     params = $.map(selected, function(x){return x.id});
     if(params.length < 4)
     {

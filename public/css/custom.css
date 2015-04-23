@@ -46,40 +46,65 @@ li.sortable-placeholder {
 
 
 
-#temas{
-	text-align: middle;
-	}
-
-
-	#temas p{
-		font-size: 10px;
-		}
-
-.box
+.boxtemas
 {
-	list-style: none;
-	padding: 3px;
+
 	border-radius: 5px;
-	margin: 2px;
-	font-size: 12px;
+	/*height:150px;
+	vertical-align:middle;*/
+	color:white;
+	margin-bottom: .5em;
+	padding: .5em;
+  font-weight:bold;
+}
+
+.bl-content{
+	border-radius: 5px;
+	opacity: 0;
+	position: absolute;
+	/*
+	pointer-events: none;top: 60px;
+	left: 30px;
+	right: 30px;
+	bottom: 30px;*/
+	padding: 0 20px;
+	overflow: hidden;
+	overflow-y: auto;
+	background-color:green;
+	color:white;
+}
+
+.propuestas
+{
+	padding: 20px;
+	color:white;
+	margin:15px;
+	font-size:larger;
 }
 
 #temas .content{
 	border: 2px black solid;
 }
 
-.box:hover
+.boxtemas:hover
 {
-	border-color: #0A9145;
+	border-color: yellow;
 	cursor: pointer
 }
 
+.handselected
+{
+	color:#0a9145;
+}
 .selected
 {
-	background-color: #0A9145 !important;
-	color: white;
-}
 
+}
+.noselected
+{
+
+	color:gray;
+}
 
 
 .number

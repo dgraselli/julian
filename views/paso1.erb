@@ -3,13 +3,9 @@
 -->
   <section id="one" class="main special">
     <div class="container">
-      <video class="bg" src="videos/v3.mp4" autoplay  poster="img/pic02.jpg"></video>
-
-      <div class="content">
-        <header class="major">
-          <h2>Prioriza</h2>
-        </header>
-        <p> Segun la prioridad que les das, los mas importantes arriba </p>
+          <div class="content">
+        <p>El desafio es ordenar los temas que seleccionaste</p>
+        <p>Mueve los temas ordenando segun la prioridad que te parezca mas importante</p>
 
         <div id="temas" class="row">
           <div class="2u">
@@ -21,7 +17,7 @@
 
           <ul class="sortable">
             <% @data.each do |d|%>
-              <li class="box" id="<%= d['id']%>" >
+              <li class="boxtemas" id="<%= d['id']%>" style="background-color:<%= d['color']%>;color:white;">
                 <%= d['name'] %>
               </li>
             <% end%>
